@@ -11,7 +11,7 @@ public class MathController {
     @GetMapping("/add/{x}/and/{y}")
     @ResponseBody
     public String add(@PathVariable long x, @PathVariable long y) {
-        return x + " plus " + y + " equals: " + (x+y);
+        return "When you add " + x + " and " + y + " you get: "  + (x+y);
     }
 
     @GetMapping("/subtract/{x}/from/{y}")
@@ -31,7 +31,5 @@ public class MathController {
     public String divide(@PathVariable long x, @PathVariable long y) {
         return "When you divide " + x + " by " + y + " you get: " + (y/x);
     }
-
-
 
 }

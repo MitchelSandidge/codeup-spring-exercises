@@ -29,7 +29,7 @@ public class PostController {
 
     @PostMapping("/posts/create")
     @ResponseBody
-    public String createNewPost() {
+    public String SubmitCreatePost() {
         return "Viewing form for creating a new post";
     }
 }
