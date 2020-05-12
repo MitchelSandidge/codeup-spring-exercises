@@ -15,21 +15,24 @@ import java.util.List;
 public class PostController {
 
     @GetMapping("/posts")
-    public String viewposts(Model model) {
+    public String viewPosts(Model model) {
         List<Post> postList = new ArrayList<>();
 
-        Post butter = new Post("Butter! The NEW Spinach !", "Recent studies show that if you eat nothing but butter, your body will be healthier than ever!");
+        Post butter = new Post("Butter! The NEW Spinach !", "Recent studies show that if you eat nothing but butter, your body will be healthier than ever!", 1);
         postList.add(butter);
-        Post easyE = new Post("Easy E Alive!!?!", "The Navy SEALS claim to have footage of the apparent 'dead' Easy E crusin' down the street!");
+        Post easyE = new Post("Easy E Alive!!?!", "The Navy SEALS claim to have footage of the apparent 'dead' Easy E crusin' down the street!", 2);
         postList.add(easyE);
         model.addAttribute("posts", postList);
         return "/posts/index";
     }
 
     @GetMapping("/posts/{id}")
-    @ResponseBody
-    public String viewPost(@PathVariable long id) {
-        return "Viewing post with id: " + id;
+    public String viewPost(@PathVariable long id, Model model) {
+
+        Post butter = new Post("Butter! The NEW Spinach !", "Recent studies show that if you eat nothing but butter, your body will be healthier than ever!", id);
+        model.addAttribute("post", butter);
+
+        return "/posts/show";
     }
 
     @GetMapping("/posts/create")
