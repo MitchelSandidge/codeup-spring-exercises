@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Posts Index</title>
+    <div th:replace="partials/partials :: head"/>
+</head>
+<body>
+<nav th:replace="partials/partials :: navbar" />
+
+
+
+<div class="container">
+    <h2>Recent Posts</h2>
+    <div th:each="post : ${posts}">
+        <h4 style="font-weight: bold;" th:text="${post.getTitle()}" ></h4>
+        <p style="padding-left: 2rem;" th:text="${post.getBody()}" ></p>
+
+    </div>
+</div>
+
+
+<nav th:replace="partials/partials :: footer" />
+</body>
+</html>

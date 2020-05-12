@@ -1,4 +1,4 @@
-package com.codeup.springblogapp;
+package com.codeup.springblogapp.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,8 +32,8 @@ public class RollDiceController {
 
         // create instance of Random class
         Random random = new Random();
-        // Generate random integers in range 0 to 6 (6 sided die)
-        int randomInt = random.nextInt(6);
+        // Generate random integers in range 1 to 6 (6 sided die)
+        int randomInt = random.nextInt(5) + 1;
 
         // 1. Once the user has rolled
         model.addAttribute("hasRolled", true); // The user has rolled
