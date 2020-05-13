@@ -27,6 +27,24 @@ public class PostController {
         return "posts/index";
     }
 
+    @GetMapping("/posts/{id}")
+    public String viewPost(@PathVariable long id, Model model) {
+
+
+        model.addAttribute("post", postDao.getPostById(id));
+
+        return "/posts/show";
+    }
+
+    @GetMapping("/posts/delete/{id}")
+    @ResponseBody
+    public String deletePost(@PathVariable long id, Model model) {
+
+        model.addAttribute("posts", postDao.deleteById(id));
+
+        return "Post with id: " + id + " was deleted.";
+    }
+
 
 
 //    @GetMapping("/posts")
