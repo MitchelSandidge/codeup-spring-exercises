@@ -22,12 +22,13 @@ public class PostController {
     }
 
 
-//    <-----VIEW ALL Posts----->
+    //    <-----VIEW ALL Posts----->
     @GetMapping("/posts")
     public String index(Model model) {
         model.addAttribute("posts", postDao.findAll());
         return "posts/index";
     }
+
 
     //    <-----CREATE NEW Post FORM----->
     @GetMapping("/posts/create")
@@ -37,18 +38,17 @@ public class PostController {
     }
 
 
-//    <--
+    //    <----Create NEW POST----->
     @GetMapping("/posts/new")
     public String create(String title, String body) {
 
         Post newPost = new Post(title, body);
         postDao.save(newPost);
-        return "posts/index";
+        return "redirect:/posts";
     }
 
 
-
-//    <-----VIEW INDIVIDUAL Post----->
+    //    <-----VIEW INDIVIDUAL Post----->
     @GetMapping("/posts/{id}")
     public String viewPost(@PathVariable long id, Model model) {
 
@@ -57,12 +57,12 @@ public class PostController {
     }
 
 
-//    <-----DELETE Post----->
+    //    <-----DELETE Post----->
     @GetMapping("/posts/delete/{id}")
     public String deletePost(@PathVariable long id) {
 
         postDao.deleteById(id);
-        return "/posts/index";
+        return "redirect:/posts";
     }
 
 

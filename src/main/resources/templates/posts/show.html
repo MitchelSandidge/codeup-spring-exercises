@@ -7,6 +7,7 @@
 <body>
 <nav th:replace="partials/partials :: navbar" />
 
+<nav th:replace="partials/partials :: jumbotron" />
 
 <div class="container">
     <h1>Recent Posts</h1>
@@ -14,7 +15,7 @@
     <div>
         <!-----View Post------>
         <h2 style="font-weight: bold;" th:text="${post.getTitle()}" ></h2>
-        <h4 style="padding-left: 2rem;" th:text="${post.getBody()}" ></h4>
+        <h4 th:text="${post.getBody()}" ></h4>
 
         <!--Post Id-->
         <p style="padding-left: 2rem">Post Id:</p>
