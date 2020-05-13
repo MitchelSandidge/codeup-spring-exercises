@@ -25,6 +25,9 @@
         <a th:href="@{|/posts/${post.getId()}|}"><p style="padding-left: 2rem;">View this post</p></a>
 
 
+        <!-------EDIT------->
+        <a th:href="@{|/posts/edit/${post.getId()}|}"><p style="padding-left: 2rem;">Edit post</p></a>
+
         <!-------DELETE------->
         <a th:href="@{|/posts/delete/${post.getId()}|}"><p style="padding-left: 2rem;">DELETE</p></a>
 

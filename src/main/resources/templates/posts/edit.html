@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create New Post</title>
+    <div th:replace="partials/partials :: head"/>
+</head>
+<body>
+<nav th:replace="partials/partials :: navbar" />
+
+<nav th:replace="partials/partials :: jumbotron" />
+
+
+<div class="container">
+
+    <h2>Edit post:</h2>
+    <h4 style="font-weight: bold;" th:text="${post.getTitle()}" ></h4>
+
+    <!-------Form for new post------->
+    <form method="post" th:action="@{'/posts/edit/' + ${post.getId()}}">
+        <label for="title">Title</label><br>
+        <input type="text" id="title" name="title" th:value="${post.getTitle()}"><br>
+        <label for="body">Body</label><br>
+        <textarea rows="5" type="text" id="body" name="body" th:text="${post.getBody()}"></textarea><br><br>
+        <input type="submit" value="Submit">
+    </form>
+
+
+</div>
+
+
+<nav th:replace="partials/partials :: footer" />
+</body>
+</html>
