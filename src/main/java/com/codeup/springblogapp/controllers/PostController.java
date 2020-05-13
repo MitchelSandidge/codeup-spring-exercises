@@ -21,28 +21,48 @@ public class PostController {
         this.postDao = adDao;
     }
 
+
+//    <-----VIEW ALL Posts----->
     @GetMapping("/posts")
     public String index(Model model) {
         model.addAttribute("posts", postDao.findAll());
         return "posts/index";
     }
 
+    //    <-----CREATE NEW Post FORM----->
+    @GetMapping("/posts/create")
+    public String viewCreateForm() {
+
+        return "posts/create";
+    }
+
+
+//    <--
+    @GetMapping("/posts/new")
+    public String create(String title, String body) {
+
+        Post newPost = new Post(title, body);
+        postDao.save(newPost);
+        return "posts/index";
+    }
+
+
+
+//    <-----VIEW INDIVIDUAL Post----->
     @GetMapping("/posts/{id}")
     public String viewPost(@PathVariable long id, Model model) {
 
-
         model.addAttribute("post", postDao.getPostById(id));
-
         return "/posts/show";
     }
 
+
+//    <-----DELETE Post----->
     @GetMapping("/posts/delete/{id}")
-    @ResponseBody
-    public String deletePost(@PathVariable long id, Model model) {
+    public String deletePost(@PathVariable long id) {
 
-        model.addAttribute("posts", postDao.deleteById(id));
-
-        return "Post with id: " + id + " was deleted.";
+        postDao.deleteById(id);
+        return "/posts/index";
     }
 
 

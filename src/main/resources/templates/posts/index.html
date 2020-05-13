@@ -11,11 +11,20 @@
 
 <div class="container">
     <h2>Recent Posts</h2>
+
+    <!-------CREATE NEW------->
+    <h4><a href="posts/create">Create new post</a></h4>
+
+    <!-------Loop to VIEW ALL Posts------->
     <div th:each="post : ${posts}">
         <h4 style="font-weight: bold;" th:text="${post.getTitle()}" ></h4>
 
         <p style="padding-left: 2rem;" th:text="${post.getBody()}" ></p>
-        <a href="/posts/1"><p style="padding-left: 2rem;">View this post</p></a>
+        <a th:href="@{|/posts/${post.getId()}|}"><p style="padding-left: 2rem;">View this post</p></a>
+
+
+        <!-------DELETE------->
+        <a th:href="@{|/posts/delete/${post.getId()}|}"><p style="padding-left: 2rem;">DELETE</p></a>
 
     </div>
 </div>

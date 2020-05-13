@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create New Post</title>
+    <div th:replace="partials/partials :: head"/>
+</head>
+<body>
+<nav th:replace="partials/partials :: navbar" />
+
+
+<div class="container">
+
+    <h2>Here is where you create a new post:</h2>
+
+    <!-------Form for new post------->
+    <form action="/posts/new">
+        <label for="title">Title</label><br>
+        <input type="text" id="title" name="title" placeholder="Title"><br>
+        <label for="body">Body</label><br>
+        <input type="text" id="body" name="body" placeholder="Body"><br><br>
+        <input type="submit" value="Submit">
+    </form>
+
+
+</div>
+
+
+<nav th:replace="partials/partials :: footer" />
+</body>
+</html>

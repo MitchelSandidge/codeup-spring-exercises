@@ -9,13 +9,16 @@
 
 
 <div class="container">
-    <h2>Recent Posts</h2>
+    <h1>Recent Posts</h1>
 
     <div>
-        <h4 style="font-weight: bold;" th:text="${post.getTitle()}" ></h4>
+        <!-----View Post------>
+        <h2 style="font-weight: bold;" th:text="${post.getTitle()}" ></h2>
+        <h4 style="padding-left: 2rem;" th:text="${post.getBody()}" ></h4>
 
-        <p style="padding-left: 2rem;" th:text="${post.getId()}" ></p>
-        <p style="padding-left: 2rem;" th:text="${post.getBody()}" ></p>
+        <!--Post Id-->
+        <p style="padding-left: 2rem">Post Id:</p>
+        <span style="padding-left: 2rem;" th:text="${post.getId()}" ></span>
 
     </div>
 
