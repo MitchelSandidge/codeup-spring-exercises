@@ -17,12 +17,16 @@
         <h2 style="font-weight: bold;" th:text="${post.getTitle()}" ></h2>
         <h4 th:text="${post.getBody()}" ></h4>
 
-        <!--Post Id-->
-        <p style="padding-left: 2rem">Post Id:</p>
-        <span style="padding-left: 2rem;" th:text="${post.getId()}" ></span>
+
+        <!-------EDIT------->
+        <a th:href="@{|/posts/edit/${post.getId()}|}"><p style="padding-left: 2rem;">Edit post</p></a>
+
+        <!-------DELETE------->
+        <a th:href="@{|/posts/delete/${post.getId()}|}"><p style="padding-left: 2rem;">DELETE</p></a>
 
     </div>
 
+    <div>Created By:</div>
     <div th:text="${post.getUser().getEmail()}"></div>
 
 

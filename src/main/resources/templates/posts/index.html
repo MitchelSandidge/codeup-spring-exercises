@@ -22,15 +22,9 @@
         <h4 style="font-weight: bold;" th:text="${post.getTitle()}" ></h4>
 
         <p style="padding-left: 2rem;" th:text="${post.getBody()}" ></p>
+
+        <!-------View Post------->
         <a th:href="@{|/posts/${post.getId()}|}"><p style="padding-left: 2rem;">View this post</p></a>
-
-
-        <!-------EDIT------->
-        <a th:href="@{|/posts/edit/${post.getId()}|}"><p style="padding-left: 2rem;">Edit post</p></a>
-
-        <!-------DELETE------->
-        <a th:href="@{|/posts/delete/${post.getId()}|}"><p style="padding-left: 2rem;">DELETE</p></a>
-
 
 
     </div>
