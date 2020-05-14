@@ -14,8 +14,8 @@ public class PostController {
 
     private final PostRepository postDao;
 
-    public PostController(PostRepository adDao) {
-        this.postDao = adDao;
+    public PostController(PostRepository postDao) {
+        this.postDao = postDao;
     }
 
 
