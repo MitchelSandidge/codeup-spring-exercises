@@ -1,7 +1,9 @@
 package com.codeup.springblogapp.controllers;
 
 import com.codeup.springblogapp.PostRepository;
+import com.codeup.springblogapp.UserRepository;
 import com.codeup.springblogapp.model.Post;
+import com.codeup.springblogapp.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,10 +15,13 @@ import java.util.List;
 public class PostController {
 
     private final PostRepository postDao;
+    private final UserRepository userDao;
 
-    public PostController(PostRepository postDao) {
+    public PostController(PostRepository postDao, UserRepository userDao) {
         this.postDao = postDao;
+        this.userDao = userDao;
     }
+
 
 
     //    <-----VIEW ALL Posts----->
@@ -31,6 +36,7 @@ public class PostController {
     @GetMapping("/posts/create")
     public String viewCreateForm() {
 
+
         return "posts/create";
     }
 
@@ -39,7 +45,8 @@ public class PostController {
     @GetMapping("/posts/new")
     public String create(String title, String body) {
 
-        Post newPost = new Post(title, body);
+        User user = userDao.getOne(1L);
+        Post newPost = new Post(title, body, user);
         postDao.save(newPost);
         return "redirect:/posts";
     }
@@ -77,20 +84,6 @@ public class PostController {
 
 
 
-//    //    <-----EDIT Post FORM----->
-//    @GetMapping("/posts/edit/{id}")
-//    public String viewEditForm(@PathVariable long id, Model model) {
-//
-//        model.addAttribute("post", postDao.getPostById(id));
-//
-//
-//        return "/posts/edit";
-//    }
-
-
-
-
-
     //    <-----DELETE Post----->
     @GetMapping("/posts/delete/{id}")
     public String deletePost(@PathVariable long id) {
@@ -100,37 +93,4 @@ public class PostController {
     }
 
 
-
-//    @GetMapping("/posts")
-//    public String viewPosts(Model model) {
-//        List<Post> postList = new ArrayList<>();
-//
-//        Post butter = new Post("Butter! The NEW Spinach !", "Recent studies show that if you eat nothing but butter, your body will be healthier than ever!", 1);
-//        postList.add(butter);
-//        Post easyE = new Post("Easy E Alive!!?!", "The Navy SEALS claim to have footage of the apparent 'dead' Easy E crusin' down the street!", 2);
-//        postList.add(easyE);
-//        model.addAttribute("posts", postList);
-//        return "/posts/index";
-//    }
-//
-//    @GetMapping("/posts/{id}")
-//    public String viewPost(@PathVariable long id, Model model) {
-//
-//        Post butter = new Post("Butter! The NEW Spinach !", "Recent studies show that if you eat nothing but butter, your body will be healthier than ever!", id);
-//        model.addAttribute("post", butter);
-//
-//        return "/posts/show";
-//    }
-//
-//    @GetMapping("/posts/create")
-//    @ResponseBody
-//    public String createPost() {
-//        return "Viewing form for creating a new post";
-//    }
-//
-//    @PostMapping("/posts/create")
-//    @ResponseBody
-//    public String SubmitCreatePost() {
-//        return "Viewing form for creating a new post";
-//    }
 }
