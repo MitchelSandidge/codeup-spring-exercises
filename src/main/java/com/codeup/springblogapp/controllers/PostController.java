@@ -62,10 +62,6 @@ public class PostController {
 
 
 
-
-
-
-
     //    Edit a post
     @GetMapping("/posts/edit/{id}")
     public String postEditForm(@PathVariable long id, Model model) {
