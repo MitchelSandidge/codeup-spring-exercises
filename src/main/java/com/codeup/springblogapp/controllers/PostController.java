@@ -1,25 +1,25 @@
 package com.codeup.springblogapp.controllers;
 
-import com.codeup.springblogapp.PostRepository;
-import com.codeup.springblogapp.UserRepository;
+import com.codeup.springblogapp.interfaces.PostRepository;
+import com.codeup.springblogapp.interfaces.UserRepository;
 import com.codeup.springblogapp.model.Post;
 import com.codeup.springblogapp.model.User;
+import com.codeup.springblogapp.services.EmailService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 public class PostController {
 
     private final PostRepository postDao;
     private final UserRepository userDao;
+    private final EmailService emailService;
 
-    public PostController(PostRepository postDao, UserRepository userDao) {
+    public PostController(PostRepository postDao, UserRepository userDao, EmailService emailService) {
         this.postDao = postDao;
         this.userDao = userDao;
+        this.emailService = emailService;
     }
 
 
@@ -47,6 +47,7 @@ public class PostController {
         User user = userDao.getOne(1L);
         post.setUser(user);
         postDao.save(post);
+        emailService.prepareAndSend(post, "You Created a post with SpringBlog!", post.getTitle());
         return "redirect:/posts";
     }
 
