@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head th:fragment="head">
     <title>Home</title>
 
@@ -21,10 +23,10 @@
             <li><a href="/welcome">Welcome</a></li>
             <li><a href="/roll-dice">Roll The Dice</a></li>
             <li><a href="/posts">Posts</a></li>
-            <li><a href="/login">Login</a></li>
-            <li><a href="/sign-up">Sign up</a></li>
+            <li sec:authorize="isAnonymous()"><a href="/login">Login</a></li>
+            <li sec:authorize="isAnonymous()"><a href="/sign-up">Sign up</a></li>
 
-            <li>
+            <li sec:authorize="isAuthenticated()">
                 <form th:action="@{/logout}" th:method="post">
                     <button class="btn-link btn" style="margin-top: 8px">Logout</button>
                 </form>
