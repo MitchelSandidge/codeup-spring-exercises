@@ -22,4 +22,12 @@ public class AdController {
         model.addAttribute("ads", adList);
         return "ads/index";
     }
+
+
+//    Object obj = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//if (obj == null || !(obj instanceof UserDetails)) {
+//    return "redirect:/login";
+//}
+//User user = (User) obj;
+//ad.setUser(user);
 }
