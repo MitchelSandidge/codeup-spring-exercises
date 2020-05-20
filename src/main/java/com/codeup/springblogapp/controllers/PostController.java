@@ -58,7 +58,7 @@ public class PostController {
     public String viewPost(@PathVariable long id, Model model) {
 
         model.addAttribute("post", postDao.getPostById(id));
-        return "/posts/show";
+        return "posts/show";
     }
 
 
@@ -68,7 +68,7 @@ public class PostController {
     public String postEditForm(@PathVariable long id, Model model) {
         Post post = postDao.getPostById(id);
         model.addAttribute("post", post);
-        return "/posts/edit";
+        return "posts/edit";
     }
     @PostMapping("/posts/edit/{id}")
     public String postEdit(@PathVariable long id, @RequestParam(name = "title") String title, @RequestParam(name = "body") String body) {
